@@ -1,0 +1,13 @@
+[project]
+name = "my-llm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "notebook>=7.6.4",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+]
