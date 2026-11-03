@@ -2,14 +2,15 @@
 
 A hands-on learning project for understanding how Large Language Models (LLMs) work, by building a small GPT-style model from scratch.
 
-The training corpus is [the-verdict.txt](the-verdict.txt), the short story *The Verdict* by Edith Wharton. It's a public-domain text, small enough to experiment with on a laptop.
+The training corpus is [data/the-verdict.txt](data/the-verdict.txt), the short story *The Verdict* by Edith Wharton. It's a public-domain text, small enough to experiment with on a laptop.
 
 ## What's covered so far
 
 | Notebook | Topic |
 | --- | --- |
-| [sample_encoding.ipynb](sample_encoding.ipynb) | Loading the text, splitting it into tokens with regex, building a vocabulary, and writing simple tokenizers (`SimpleTokenizerV1`, and `SimpleTokenizerV2` with the `<\|endoftext\|>` and `<\|unk\|>` special tokens) |
-| [byte_pair_encoding.ipynb](byte_pair_encoding.ipynb) | Byte Pair Encoding (BPE) with the GPT-2 tokenizer from `tiktoken`, building input/target pairs with a sliding window, and starting a PyTorch `Dataset`/`DataLoader` |
+| [01_sample_encoding.ipynb](notebooks/01_sample_encoding.ipynb) | Loading the text, splitting it into tokens with regex, building a vocabulary, and writing simple tokenizers (`SimpleTokenizerV1`, and `SimpleTokenizerV2` with the `<\|endoftext\|>` and `<\|unk\|>` special tokens) |
+| [02_byte_pair_encoding.ipynb](notebooks/02_byte_pair_encoding.ipynb) | Byte Pair Encoding (BPE) with the GPT-2 tokenizer from `tiktoken`, building input/target pairs with a sliding window, and starting a PyTorch `Dataset`/`DataLoader` |
+| [03_token_embeddings.ipynb](notebooks/03_token_embeddings.ipynb) | Creating token embeddings and adding positional embeddings to encode word order |
 
 ## Prerequisites
 
@@ -71,7 +72,7 @@ This makes the virtual environment available as a kernel called **Python (my llm
 uv run jupyter notebook
 ```
 
-Open a notebook and select the **Python (my llm)** kernel (Kernel → Change Kernel).
+Open a notebook from the `notebooks/` folder and select the **Python (my llm)** kernel (Kernel → Change Kernel).
 
 ## Quick reference
 
@@ -88,9 +89,12 @@ uv run jupyter notebook
 
 ```
 my_llm/
-├── the-verdict.txt            # Training text
-├── sample_encoding.ipynb      # Tokenization basics and a simple tokenizer
-├── byte_pair_encoding.ipynb   # BPE tokenizer (tiktoken) and the data loader
+├── data/
+│   └── the-verdict.txt               # Training text
+├── notebooks/
+│   ├── 01_sample_encoding.ipynb      # Tokenization basics and a simple tokenizer
+│   ├── 02_byte_pair_encoding.ipynb   # BPE tokenizer (tiktoken) and the data loader
+│   └── 03_token_embeddings.ipynb     # Token and positional embeddings
 ├── main.py                    # Entry point (placeholder)
 ├── requirements.txt           # Dependencies installed with uv pip
 ├── pyproject.toml             # Project metadata
@@ -99,7 +103,8 @@ my_llm/
 
 ## Notes
 
-- If `the-verdict.txt` is missing, the first cells of `sample_encoding.ipynb` download it with `requests`. If `requests` isn't installed, run `uv pip install requests`.
+- Notebooks run from the `notebooks/` folder, so they open the text as `../data/the-verdict.txt`.
+- If `data/the-verdict.txt` is missing, the first cells of `01_sample_encoding.ipynb` download it with `requests`. If `requests` isn't installed, run `uv pip install requests`.
 - To check that the notebook uses the right environment, run `!which python` in a cell. The path should point into `.venv/`.
 
 ## References
